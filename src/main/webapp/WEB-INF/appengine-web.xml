@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+
+  <threadsafe>true</threadsafe>
+  <sessions-enabled>false</sessions-enabled>
+  <runtime>java8</runtime>
+
+  <system-properties>
+    <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+  </system-properties>
+  
+  <env-variables>
+		<env-var name="DEFAULT_ENCODING" value="UTF-8" />
+		<env-var name="server" value="127.0.0.1"></env-var>
+		<env-var name="puerto" value="5432"></env-var>
+		<env-var name="database" value="lamarrulladb"></env-var>
+		<env-var name="user" value="postgres"></env-var>
+		<env-var name="passw" value="maradr"></env-var>
+		<env-var name="tipoDatabase" value="1"></env-var>
+		<env-var name="instance" value="apisemaforov:us-central1:semaforov"></env-var>
+	</env-variables>
+
+</appengine-web-app>
