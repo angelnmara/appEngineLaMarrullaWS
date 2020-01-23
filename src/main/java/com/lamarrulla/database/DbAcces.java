@@ -22,19 +22,27 @@ public class DbAcces {
 	boolean closePs;
 	boolean closeConnection;
 	
-	String strQuery;
-	int idReturned;
-	String strError;
+	private String strQuery;
+	//int idReturned;
+	private String strResult;
+	private String strError;
 	
+		
+	public String getStrResult() {
+		return strResult;
+	}
+//	public void setStrResult(String strResult) {
+//		this.strResult = strResult;
+//	}
 	public String getStrError() {
 		return strError;
 	}
-	public int getIdReturned() {
-		return idReturned;
-	}
-	public void setIdReturned(int idReturned) {
-		this.idReturned = idReturned;
-	}
+//	public int getIdReturned() {
+//		return idReturned;
+//	}
+//	public void setIdReturned(int idReturned) {
+//		this.idReturned = idReturned;
+//	}
 	public String getStrQuery() {
 		return strQuery;
 	}
@@ -112,7 +120,7 @@ public class DbAcces {
 			e.printStackTrace();
 			System.out.println("Existio un error al cerrar la conexion");
 		}		
-	}
+	}	
 	public void execQry() {
 		try {
 			ps = connection.prepareStatement(strQuery);
@@ -120,7 +128,7 @@ public class DbAcces {
 			rs = ps.getResultSet();
 			if(rs!=null) {
 				if(rs.next()) {
-					idReturned = rs.getInt(1);
+					strResult = rs.getString(1);
 				}	
 			}
 		} catch (SQLException e) {

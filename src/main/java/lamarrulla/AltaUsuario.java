@@ -105,7 +105,7 @@ public class AltaUsuario extends HttpServlet {
 			//String respuestaConsulta = String.valueOf(dbacces.getIdReturned());
 			
 			if(dbacces.getStrError() == null) {
-				idUsuario = dbacces.getIdReturned();
+				idUsuario = Integer.parseInt(dbacces.getStrResult());
 				isUsuarioInsertado = true;				
 			}else {
 				//salida = String.format(error, respuestaConsulta.replaceAll("\"", "'"));
@@ -138,7 +138,7 @@ public class AltaUsuario extends HttpServlet {
 			//respuestaConsulta.matches("-?\\d+")
 			
 			if(dbacces.getStrError() == null) {
-				idPassw = dbacces.getIdReturned();
+				idPassw = Integer.parseInt(dbacces.getStrResult());
 				isPasswInsertado = true;				
 			}else {
 				//salida = String.format(error, respuestaConsulta.replaceAll("\"", "'"));
