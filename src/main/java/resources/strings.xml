@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<string name="responseToken">{"token":"%s", "salt":"%s", "username":"%s"}</string>
+	<string name="responseToken">{"token":"%s", "salt":"%s", "username/correo":"%s"}</string>
 	<string name="Usuario">usuario</string>
 </resources>

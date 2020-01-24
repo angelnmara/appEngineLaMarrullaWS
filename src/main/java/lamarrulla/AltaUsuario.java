@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.google.appengine.repackaged.com.google.gson.JsonObject;
 import com.google.appengine.repackaged.com.google.gson.JsonParser;
 import com.lamarrulla.database.DbAcces;
@@ -23,7 +26,8 @@ public class AltaUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	LaMarrullaUtils utils = new LaMarrullaUtils();
-	JsonObject jso = new JsonObject();
+	//JsonObject jso = new JsonObject();
+	JSONObject jso = new JSONObject();
 	DbAcces dbacces;
 	
 	String username;
@@ -36,7 +40,7 @@ public class AltaUsuario extends HttpServlet {
 	//String salida;
 	String strError;
 	
-	boolean isUsuarioInsertado = false;
+	boolean isUsuarioInsertado;
 	boolean isPasswInsertado = false;
 	
 
@@ -54,35 +58,52 @@ public class AltaUsuario extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException{
 		
-		String parametrosEntrada = utils.recoverParams(request);
-		jso = new JsonParser().parse(parametrosEntrada).getAsJsonObject();
-		
-		username = jso.get("username").getAsString();
-		correo = jso.get("correo").getAsString();
-		password = jso.get("password").getAsString();
-
-		System.out.println(username);
-		System.out.println(correo);
-		System.out.println(password);
-		
-		insertaUsuario(username, correo);
-				
-		response.setContentType("text/plain");
+		response.setContentType("text/json");
 	    response.setCharacterEncoding("UTF-8");
-	    
-		if(!isUsuarioInsertado) {								
-		    response.getWriter().print(strError);
-		}else {
-			ProtectUserPassword protectedUser = new ProtectUserPassword();
-			protectedUser.setMyPassword(password);
-			protectedUser.generaPassword();
-			insertaPassword(username, password);
-			if(!isPasswInsertado) {
-				response.getWriter().print(strError);
+		String parametrosEntrada = utils.recoverParams(request);
+		//jso = new JsonParser().parse(parametrosEntrada).getAsJsonObject();
+		try {
+			jso = new JSONObject(parametrosEntrada);
+			
+			username = jso.has("username")?jso.getString("username"):null;
+			correo = jso.has("correo")?jso.getString("correo"):null;
+			password = jso.has("password")?jso.getString("password"):null;
+			
+			System.out.println(username);
+			System.out.println(correo);
+			System.out.println(password);
+			
+			insertaUsuario(username, correo);
+					
+			
+		    
+			if(!isUsuarioInsertado) {								
+			    response.getWriter().print(strError);
 			}else {
-				response.getWriter().print("Usuario se inserto correctamente");
+				ProtectUserPassword protectedUser = new ProtectUserPassword();
+				protectedUser.setMyPassword(password);
+				protectedUser.generaPassword();
+				insertaPassword(username, password);
+				if(!isPasswInsertado) {
+					response.getWriter().print(strError);
+				}else {
+					response.getWriter().print("{\"respuesta\":\"Usuario se inserto correctamente\"}");
+				}
 			}
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			response.getWriter().print("{\"error\":\"" + e.getMessage() + "\"}");
+			e.printStackTrace();			
 		}
+		
+//		username = jso.get("username").getAsString();
+//		correo = jso.get("correo").getAsString();
+//		password = jso.get("password").getAsString();
+		
+		
+
+		
 	}
 	
 	private void insertaUsuario(String username, String correo) {
@@ -91,6 +112,9 @@ public class AltaUsuario extends HttpServlet {
 		try {
 			String consulta = "insert into tbUsu(fcUsuNom, fcUsuCorrElec) \r\n" + 
 							"values ('" + username + "', '" + correo + "') returning fiIdUsu;";
+			if(username==null||correo==null) {
+				consulta = consulta.replace("'null'", "null");
+			}
 			System.out.println(consulta);
 			dbacces = new DbAcces();
 			dbacces.connectDatabase();
@@ -109,7 +133,8 @@ public class AltaUsuario extends HttpServlet {
 				isUsuarioInsertado = true;				
 			}else {
 				//salida = String.format(error, respuestaConsulta.replaceAll("\"", "'"));
-				System.out.println("Existe un error al insertar tbUsu " + dbacces.getStrError());	
+				System.out.println("Existe un error al insertar tbUsu " + dbacces.getStrError());
+				isUsuarioInsertado = false;
 				strError = dbacces.getStrError();
 			}
 		}catch(Exception ex) {

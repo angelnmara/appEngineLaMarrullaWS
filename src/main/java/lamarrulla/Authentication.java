@@ -27,7 +27,7 @@ import com.lamarrulla.security.VerifyProvidedPassword;
 public class Authentication extends HttpServlet {
 	
 	LaMarrullaUtils lmutils = new LaMarrullaUtils();
-	Utils utils = new Utils();
+	Utils utils;
 	Token token = new Token();
 	
 	//JsonObject jso = new JsonObject();
@@ -57,13 +57,16 @@ public class Authentication extends HttpServlet {
 			throws IOException{
 		
 		String parametrosEntrada = lmutils.recoverParams(request);
+		response.setContentType("text/json");
+	    response.setCharacterEncoding("UTF-8");
 		//jso = new JsonParser().parse(parametrosEntrada).getAsJsonObject();		
 		
 		try {
 			jso = new JSONObject(parametrosEntrada);	
-			username = jso.getString("username"); //.get("username");
-			correo = jso.getString("correo"); //.get("correo");
-			password = jso.getString("password");  //.get("password").toString();
+			
+			username = jso.has("username")?jso.getString("username"):"";
+			correo = jso.has("correo")?jso.getString("correo"):"";
+			password = jso.has("password")?jso.getString("password"):"";  //.get("password").toString();
 			
 			System.out.println(username);
 			System.out.println(correo);
@@ -81,24 +84,25 @@ public class Authentication extends HttpServlet {
 				System.out.println("no validado");
 			}
 			
-			salida = utils.getStringFromXML("responseToken");
-			
-		    response.setContentType("text/json");
-		    response.setCharacterEncoding("UTF-8");
-		    response.getWriter().print(String.format(salida, token, jso.getString("fcsalt"), (username==null?correo:username)));
+			salida = utils.getStringFromXML("responseToken");					   
+		    response.getWriter().print(String.format(salida, token, jso.getString("fcsalt"), (username==""?correo:username)));
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			response.getWriter().print("{\"error\":\"" + e.getMessage() + "\"}");
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			response.getWriter().print("{\"error\":\"" + e.getMessage() + "\"}");
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			response.getWriter().print("{\"error\":\"" + e.getMessage() + "\"}");
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			response.getWriter().print("{\"error\":\"" + e.getMessage() + "\"}");
 		}								
 	}
 	
@@ -116,8 +120,17 @@ public class Authentication extends HttpServlet {
 				"from tbusupassw a\n" + 
 				"inner join tbusu b\n" + 
 				"on a.fiidusu = b.fiidusu\n" + 
-				"where fcusupassw = crypt('" + password + "', fcusupassw)\n" + 
-				"and (fcusunom = '" + username + "' or fcusucorrelec = '" + correo + "')";
+				"where fcusupassw = crypt('" + password + "', fcusupassw)\n";
+		
+		if((username!=null&&!username.isEmpty()) && (correo!=null&&!correo.isEmpty())) {
+			consulta += "and (fcusunom = '" + username + "' and fcusucorrelec = '" + correo + "')";
+		}else if(username!=null&&!username.isEmpty()) {
+			consulta += "and fcusunom = '" + username + "'";
+		}else if(correo!=null&&!correo.isEmpty()){
+			consulta += "and fcusucorrelec = '" + correo + "'";
+		}
+				
+		utils = new Utils();
 		utils.setConsulta(consulta);
 		utils.ejecutaConsultaJSON();			
 		jso = utils.getJso();
