@@ -30,6 +30,13 @@
   </dependencyManagement>
 
   <dependencies>
+  <!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
+	<dependency>
+	    <groupId>javax</groupId>
+	    <artifactId>javaee-web-api</artifactId>
+	    <version>7.0</version>
+	    <scope>provided</scope>
+	</dependency>
     <!-- Compile/runtime dependencies -->
     <dependency>
       <groupId>javax.servlet</groupId>

@@ -13,14 +13,26 @@ import javax.servlet.http.HttpServletResponse;
 )
 public class HelloAppEngine extends HttpServlet {
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) 
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException {
 
     response.setContentType("text/plain");
     response.setCharacterEncoding("UTF-8");
 
     response.getWriter().print("Hello App Engine!\r\n");
+	}
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws IOException{
+    response.setContentType("text/plain");
+    response.setCharacterEncoding("UTF-8");
 
-  }
+    response.getWriter().print("Hello App Engine POST!\r\n");
+	}
 }

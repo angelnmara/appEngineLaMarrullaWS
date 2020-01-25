@@ -14,7 +14,6 @@ import org.json.JSONObject;
 import org.xml.sax.SAXException;
 
 import com.lamarrulla.database.DbAcces;
-import com.lamarrulla.utils.LaMarrullaUtils;
 import com.lamarrulla.utils.Utils;
 import com.lamarrulla.security.Token;
 import com.lamarrulla.security.VerifyProvidedPassword;
@@ -25,8 +24,7 @@ import com.lamarrulla.security.VerifyProvidedPassword;
 		)
 
 public class Authentication extends HttpServlet {
-	
-	LaMarrullaUtils lmutils = new LaMarrullaUtils();
+		
 	Utils utils;
 	Token token = new Token();
 	
@@ -56,7 +54,7 @@ public class Authentication extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException{
 		
-		String parametrosEntrada = lmutils.recoverParams(request);
+		String parametrosEntrada = utils.recoverParams(request);
 		response.setContentType("text/json");
 	    response.setCharacterEncoding("UTF-8");
 		//jso = new JsonParser().parse(parametrosEntrada).getAsJsonObject();		

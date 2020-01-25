@@ -10,10 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.appengine.repackaged.com.google.gson.JsonObject;
-import com.google.appengine.repackaged.com.google.gson.JsonParser;
 import com.lamarrulla.database.DbAcces;
-import com.lamarrulla.utils.LaMarrullaUtils;
+import com.lamarrulla.utils.Utils;
 import com.lamarrulla.security.ProtectUserPassword;
 
 @WebServlet(
@@ -25,7 +23,7 @@ public class AltaUsuario extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	LaMarrullaUtils utils = new LaMarrullaUtils();
+	Utils utils = new Utils();
 	//JsonObject jso = new JsonObject();
 	JSONObject jso = new JSONObject();
 	DbAcces dbacces;
