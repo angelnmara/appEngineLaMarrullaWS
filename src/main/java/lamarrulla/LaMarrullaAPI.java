@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.lamarrulla.implement.Secured;
+//import com.lamarrulla.implement.Secured;
 import com.lamarrulla.utils.Utils;
 
 @WebServlet(
@@ -31,7 +31,7 @@ public class LaMarrullaAPI extends HttpServlet {
 	private String respuesta;
 
 	@Override
-	@Secured
+	//@Secured
 	  public void doGet(HttpServletRequest request, HttpServletResponse response) 
 	      throws IOException {
 		response.setContentType("text/json");

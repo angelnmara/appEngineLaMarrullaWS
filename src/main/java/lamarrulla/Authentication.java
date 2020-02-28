@@ -53,13 +53,13 @@ public class Authentication extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException{
-		
-		String parametrosEntrada = utils.recoverParams(request);
-		response.setContentType("text/json");
-	    response.setCharacterEncoding("UTF-8");
-		//jso = new JsonParser().parse(parametrosEntrada).getAsJsonObject();		
-		
 		try {
+			
+			String parametrosEntrada = utils.recoverParams(request);
+			response.setContentType("text/json");
+		    response.setCharacterEncoding("UTF-8");
+		//jso = new JsonParser().parse(parametrosEntrada).getAsJsonObject();		
+				
 			jso = new JSONObject(parametrosEntrada);	
 			
 			username = jso.has("username")?jso.getString("username"):"";

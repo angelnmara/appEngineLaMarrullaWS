@@ -3,27 +3,29 @@ package com.lamarrulla.implement;
 import java.io.IOException;
 import java.util.Enumeration;
 
-import javax.annotation.Priority;
+//import javax.annotation.Priority;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Priorities;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.Provider;
+//import javax.ws.rs.Priorities;
+//import javax.ws.rs.container.ContainerRequestContext;
+//import javax.ws.rs.container.ContainerRequestFilter;
+//import javax.ws.rs.core.HttpHeaders;
+//import javax.ws.rs.core.Response;
+//import javax.ws.rs.ext.Provider;
 import com.lamarrulla.security.Token;
 //import com.lamarrulla.implement.Secured;
 
 
-@Secured
-@Provider
-@Priority(Priorities.AUTHENTICATION)
+//@Secured
+//@Provider
+//@Priority(Priorities.AUTHENTICATION)
+@WebFilter("/AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
 	
 	private static final String REALM = "example";
