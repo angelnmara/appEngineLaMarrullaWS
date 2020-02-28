@@ -1,6 +1,7 @@
 package com.lamarrulla.implement;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.annotation.Priority;
 import javax.servlet.Filter;
@@ -9,6 +10,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
@@ -114,7 +116,14 @@ public class AuthenticationFilter implements Filter {
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// Get the Authorization header from the request
-		requestCont = request;
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+	    Enumeration<String> headerNames = httpRequest.getHeaderNames();
+
+	    if (headerNames != null) {
+	            while (headerNames.hasMoreElements()) {
+	                    System.out.println("Header: " + httpRequest.getHeader(headerNames.nextElement()));
+	            }
+	    }
 		System.out.println("prueba dofilter filter");
 //        String authorizationHeader =
 //                request.getHeaderString(HttpHeaders.AUTHORIZATION);
