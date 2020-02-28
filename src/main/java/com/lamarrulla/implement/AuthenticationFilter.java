@@ -68,24 +68,25 @@ public class AuthenticationFilter implements Filter {
         }	
 	}*/
 	
-//	private boolean isTokenBasedAuthentication(String authorizationHeader) {
-//
-//        // Check if the Authorization header is valid
-//        // It must not be null and must be prefixed with "Bearer" plus a whitespace
-//        // The authentication scheme comparison must be case-insensitive
-//        return authorizationHeader != null && authorizationHeader.toLowerCase()
-//                    .startsWith(AUTHENTICATION_SCHEME.toLowerCase() + " ");
-//    }
+	private boolean isTokenBasedAuthentication(String authorizationHeader) {
+
+        // Check if the Authorization header is valid
+        // It must not be null and must be prefixed with "Bearer" plus a whitespace
+        // The authentication scheme comparison must be case-insensitive
+        return authorizationHeader != null && authorizationHeader.toLowerCase()
+                    .startsWith(AUTHENTICATION_SCHEME.toLowerCase() + " ");
+    }
 	
-	private void abortWithUnauthorized(ContainerRequestContext requestContext) {
+	private void abortWithUnauthorized(ServletRequest requestContext) {
 
         // Abort the filter chain with a 401 status code response
         // The WWW-Authenticate header is sent along with the response
-        requestContext.abortWith(
-                Response.status(Response.Status.UNAUTHORIZED)
-                        .header(HttpHeaders.WWW_AUTHENTICATE, 
-                                AUTHENTICATION_SCHEME + " realm=\"" + REALM + "\"")
-                        .build());
+//        requestContext.abortWith(
+//                Response.status(Response.Status.UNAUTHORIZED)
+//                        .header(HttpHeaders.WWW_AUTHENTICATE, 
+//                                AUTHENTICATION_SCHEME + " realm=\"" + REALM + "\"")
+//                        .build());
+		System.out.println("Abortar autorizacion");
     }
 	
 	private void validateToken() throws Exception {
@@ -118,37 +119,22 @@ public class AuthenticationFilter implements Filter {
 		// Get the Authorization header from the request
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 	    Enumeration<String> headerNames = httpRequest.getHeaderNames();
-
-	    if (headerNames != null) {
+	    String headerVal;
+	    String Token = "";
+	    if (headerNames != null) {	    	
 	            while (headerNames.hasMoreElements()) {
-	                    System.out.println("Header: " + httpRequest.getHeader(headerNames.nextElement()));
+	            	headerVal = httpRequest.getHeader(headerNames.nextElement());
+	            	if(headerVal.contains("Bearer ")) {
+	            		Token = headerVal.replace("Bearer ", "");
+	            		System.out.println(Token);
+	            	}	                    
 	            }
 	    }
-		System.out.println("prueba dofilter filter");
-//        String authorizationHeader =
-//                request.getHeaderString(HttpHeaders.AUTHORIZATION);
-//
-//        // Validate the Authorization header
-//        if (!isTokenBasedAuthentication(authorizationHeader)) {
-//            abortWithUnauthorized(requestContext);
-//            return;
-//        }
-//
-//        // Extract the token from the Authorization header
-//        tok = authorizationHeader.substring(AUTHENTICATION_SCHEME.length()).trim();
-//        
-//        user = requestContext.getHeaderString(Usuario);
-//        
-//        secret = requestContext.getHeaderString(Secret);
-//
-//        try {
-//
-//            // Validate the token
-//            validateToken();
-//
-//        } catch (Exception e) {
-//            abortWithUnauthorized(requestContext);
-//        }
+	    if (!isTokenBasedAuthentication(Token)) {
+            abortWithUnauthorized(request);
+            return;
+        }
+	    chain.doFilter(httpRequest, response);
 	}
 
 	@Override
