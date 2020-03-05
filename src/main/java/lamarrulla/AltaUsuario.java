@@ -1,6 +1,7 @@
 package lamarrulla;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -116,9 +117,11 @@ public class AltaUsuario extends HttpServlet {
 			System.out.println(consulta);
 			dbacces = new DbAcces();
 			dbacces.connectDatabase();
-			dbacces.setStrQuery(consulta);
-			dbacces.execQry();
-			dbacces.disconnectDatabase();
+			if(dbacces.isValid()) {
+				dbacces.setStrQuery(consulta);
+				dbacces.execQry();
+			}			
+			//dbacces.disconnectDatabase();
 			
 			//objAPI.setConsulta(consulta);
 			//objAPI.ejecutaAPI();
@@ -137,7 +140,10 @@ public class AltaUsuario extends HttpServlet {
 			}
 		}catch(Exception ex) {
 			strError = ex.getMessage();
-		}					
+			//dbacces.disconnectDatabase();
+		}finally {
+			dbacces.disconnectDatabase();
+		}
 	} 
 	
 	private void insertaPassword(String username, String password) {
@@ -151,9 +157,10 @@ public class AltaUsuario extends HttpServlet {
 					"values(" + idUsuario + ", crypt('" + password + "', gen_salt('bf')), '" + pup.getMySecurePassword() + "', '" + pup.getSalt() + "') returning fiIdUsuPassw;";
 			dbacces = new DbAcces();
 			dbacces.connectDatabase();
-			dbacces.setStrQuery(consulta);
-			dbacces.execQry();
-			dbacces.disconnectDatabase();
+			if(dbacces.isValid()) {
+				dbacces.setStrQuery(consulta);
+				dbacces.execQry();
+			}						
 			
 //			objAPI.setConsulta(consulta);
 //			objAPI.ejecutaAPI();			
@@ -171,6 +178,8 @@ public class AltaUsuario extends HttpServlet {
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			strError = ex.getMessage();
-		}		
+		}finally {
+			dbacces.disconnectDatabase();
+		}
 	}
 }

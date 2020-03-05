@@ -21,13 +21,20 @@ public class DbAcces {
 	boolean closeRs;
 	boolean closePs;
 	boolean closeConnection;
-	
+	boolean valid;
+		
 	private String strQuery;
 	//int idReturned;
 	private String strResult;
 	private String strError;
 	
-		
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	
 	public String getStrResult() {
 		return strResult;
 	}
@@ -93,9 +100,10 @@ public class DbAcces {
                 	break;                	            	
             }                                                         
 
-            boolean valid = connection.isValid(50000);
+            valid = connection.isValid(50000);
             System.out.println(valid ? "TEST OK" : "TEST FAIL");
         } catch (java.sql.SQLException sqle) {
+        	strError = sqle.getMessage();
             System.out.println("Error: " + sqle);
         }
     }

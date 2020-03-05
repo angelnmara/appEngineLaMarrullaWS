@@ -54,7 +54,7 @@ public class Authentication extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException{
 		try {
-			
+			utils = new Utils();
 			String parametrosEntrada = utils.recoverParams(request);
 			response.setContentType("text/json");
 		    response.setCharacterEncoding("UTF-8");
@@ -73,17 +73,25 @@ public class Authentication extends HttpServlet {
 			String token = "";
 			
 			// Authenticate the user using the credentials provided
-			authenticate(username, correo, password);	
+			authenticate(username, correo, password);
+			
+			
+			String mostrar;
+			if(username.length()==0) {
+				mostrar = correo;
+			}else {
+				mostrar = username;
+			}
 			
 			if(vpp.verificaPassword()) {
 				// Issue a token for the user
-				token = issueToken((username==null?correo:username));
+				token = issueToken(mostrar);
 			}else {
 				System.out.println("no validado");
 			}
-			
+
 			salida = utils.getStringFromXML("responseToken");					   
-		    response.getWriter().print(String.format(salida, token, jso.getString("fcsalt"), (username==""?correo:username)));
+		    response.getWriter().print(String.format(salida, token, jso.getString("fcsalt"), mostrar));
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

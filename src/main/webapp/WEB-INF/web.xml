@@ -7,16 +7,16 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  <!-- <filter>
+  <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>com.lamarrulla.implement.AuthenticationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <!-- <url-pattern>/*</url-pattern> -->
 		<servlet-name>LaMarrullaAPIAppEngine</servlet-name>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>FORWARD</dispatcher>
-    </filter-mapping> -->
+    </filter-mapping>
 </web-app>

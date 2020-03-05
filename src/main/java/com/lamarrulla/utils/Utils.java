@@ -99,15 +99,24 @@ public class Utils {
 //			objAPI.ejecutaAPI();			
 			dbacces = new DbAcces();
 			dbacces.connectDatabase();
-			dbacces.setStrQuery("select * from fnAPI(" + idTipoPeticion + ", '"+ tabla + "', '" + campos + "', '" + valores + "', " + idTabla + ");");
-			dbacces.execQry();
-			dbacces.disconnectDatabase();
+			if(dbacces.isValid()) {
+				dbacces.setStrQuery("select * from fnAPI(" + idTipoPeticion + ", '"+ tabla + "', '" + campos + "', '" + valores + "', " + idTabla + ");");
+				dbacces.execQry();
+			}					
 			//objAPI.getstJS()
 			System.out.println(dbacces.getStrResult());
-			jso = new JSONObject(dbacces.getStrResult());
+			jso = new JSONObject();
+			if(dbacces.getStrResult()!=null) {
+				jso = new JSONObject(dbacces.getStrResult());
+			}else {
+				jso = new JSONObject("{\"" + tabla + "\":\"no contiene resultados\"}");
+			}			
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 		}		
+		finally {
+			dbacces.disconnectDatabase();
+		}
 	}
 	public void ejecutaConsultaJSON() {
 		try {
@@ -115,14 +124,17 @@ public class Utils {
 //			objAPI.ejecutaAPI();
 			dbacces = new DbAcces();
 			dbacces.connectDatabase();
-			dbacces.setStrQuery("select row_to_json(t) from (" + consulta + ")t");
-			dbacces.execQry();
-			dbacces.disconnectDatabase();
+			if(dbacces.isValid()) {
+				dbacces.setStrQuery("select row_to_json(t) from (" + consulta + ")t");
+				dbacces.execQry();
+			}					
 			//objAPI.getstJS()
 			System.out.println(dbacces.getStrResult());
 			jso = new JSONObject(dbacces.getStrResult());
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
+		}finally{
+			dbacces.disconnectDatabase();
 		}		
 	}
 	public void getFile() {
