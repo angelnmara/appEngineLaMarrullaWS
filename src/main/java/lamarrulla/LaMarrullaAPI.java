@@ -105,22 +105,31 @@ public class LaMarrullaAPI extends HttpServlet {
 		try {
 			response.setContentType("text/json");
 			response.setCharacterEncoding("UTF-8");
+			
 			tabla = "";
 			campos = "";
 			valores = "";
+			utils = new Utils();
+			
 			if(getParameters(request)==0) {
 				response.getWriter().print(jso);
 				return;
+			}else if(getParameters(request)==2) {
+				utils.setIdTipoPeticion(3);
+				utils.setIdTabla(Integer.parseInt(idTabla));
+			}else {
+				utils.setIdTipoPeticion(2);
 			}
-			utils = new Utils();
+			
 			String parametrosEntrada = utils.recoverParams(request);
 			if(parametrosEntrada.length()==0) {
 				response.getWriter().print("{\"error\":\"no existen parametros de entrada en el body\"}");
 				return;
 			}
+			
 			jso = new JSONObject(parametrosEntrada);
 			generaInsert(jso);
-			utils.setIdTipoPeticion(2);
+			//utils.setIdTipoPeticion(2);
 			utils.setTabla(tabla);
 			utils.setCampos(campos);
 			utils.setValores(valores);
