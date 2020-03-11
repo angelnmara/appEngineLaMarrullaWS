@@ -1,4 +1,4 @@
-﻿CREATE EXTENSION pgcrypto;
+--CREATE EXTENSION pgcrypto;
 
 drop table if exists tbModuloEmpresa;
 
@@ -67,6 +67,11 @@ drop table if exists tbEmpresa;
 drop table if exists tbAsistencia;
 
 drop table if exists tbUsuarioAsistencia;
+
+drop table if exists tbPrueba;
+
+create table if not exists tbPrueba(fiIdPrueba serial primary key,
+								   fcPrueba varchar(100));
 
 create table if not exists tbCatObj(fiIdObj serial primary key,
 				fcObj varchar(4),

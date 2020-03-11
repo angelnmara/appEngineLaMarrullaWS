@@ -103,9 +103,11 @@ begin
 			on a.fiIdCampos = b.fiIdRes;
 			raise notice '% ', salida;
 			execute ('update ' || tabla || ' set ' || updateStr || ' where ' || prmaryKey || ' = ' || idTabla);
-			GET DIAGNOSTICS salida := ROW_COUNT;
+			execute '(select array_to_json(array_agg(row_to_json(t))) from (select * from ' || tabla || ' where ' || prmaryKey || ' = ' || idTabla || ') t);' into rest;
+			salida := '{"' || tabla || '":' || rest || '}';
+			--GET DIAGNOSTICS salida := ROW_COUNT;
 
-			return '{"' || tabla || '":"Se actualizaron ' || salida || ' registros"}';
+			return salida;--'{"' || tabla || '":"Se actualizaron ' || salida || ' registros"}';
 		-- DELETE
 		elsif metodo = 4 then
 			execute('delete from ' || tabla || ' where ' || prmaryKey || ' = ' || idTabla);
