@@ -66,7 +66,7 @@ public class Token {
 		try {
 			Algorithm algorithm = Algorithm.HMAC256(secret);
 		    JWTVerifier verifier = JWT.require(algorithm)		    		
-		    		.acceptExpiresAt(180)		    		
+		    		.acceptExpiresAt(60*60)		    		
 		    		.acceptNotBefore(0)
 		    		.acceptIssuedAt(0)
 		    		.build();			
