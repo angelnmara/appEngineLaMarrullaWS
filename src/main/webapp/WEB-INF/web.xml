@@ -15,6 +15,7 @@
         <filter-name>AuthenticationFilter</filter-name>
         <!-- <url-pattern>/*</url-pattern> -->
 		<servlet-name>LaMarrullaAPIAppEngine</servlet-name>
+		<servlet-name>LaMarrullaFnAppEngine</servlet-name>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>FORWARD</dispatcher>
