@@ -4,3 +4,6 @@ INFO: scrcpy 1.12 <https://github.com/Genymobile/scrcpy>
 [100%] /data/local/tmp/scrcpy-server.jar
 /usr/local/share/scrcpy/scrcpy-server: 1 file pushed. 1.3 MB/s (26196 bytes in 0.020s)
 INFO: Initial texture: 1080x1920
+
+(gedit:32627): Gtk-WARNING **: 19:57:14.493: Attempting to read the recently used resources file at '/home/dave/.local/share/recently-used.xbel', but the parser failed: Falló al abrir el archivo «/home/dave/.local/share/recently-used.xbel»: Permiso denegado.
+WARN: Device disconnected

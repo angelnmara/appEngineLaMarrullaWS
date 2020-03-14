@@ -1,8 +1,6 @@
-package lamarrulla;
+package com.lamarrulla.ws;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

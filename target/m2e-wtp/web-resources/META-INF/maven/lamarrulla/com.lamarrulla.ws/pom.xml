@@ -94,12 +94,22 @@
 	    <artifactId>java-jwt</artifactId>
 	    <version>3.8.0</version>
 	</dependency>
+	<dependency>
+	    <groupId>com.google.cloud.sql</groupId>
+	    <artifactId>postgres-socket-factory</artifactId>
+	    <version>1.0.15</version>
+	</dependency>
   </dependencies>
 
   <build>
     <!-- for hot reload of the web application-->
     <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
     <plugins>
+    <plugin>
+	    <groupId>org.eclipse.jetty</groupId>
+	    <artifactId>jetty-maven-plugin</artifactId>
+	    <version>9.4.0.M0</version>
+	</plugin>
       <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>appengine-maven-plugin</artifactId>

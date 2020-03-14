@@ -1,0 +1,89 @@
+INFO: scrcpy 1.12 <https://github.com/Genymobile/scrcpy>
+[100%] /data/local/tmp/scrcpy-server.jar
+/usr/local/share/scrcpy/scrcpy-server: 1 file pushed. 5.5 MB/s (26196 bytes in 0.005s)
+INFO: Initial texture: 1080x1920
+INFO: scrcpy 1.12 <https://github.com/Genymobile/scrcpy>
+[100%] /data/local/tmp/scrcpy-server.jar
+/usr/local/share/scrcpy/scrcpy-server: 1 file pushed. 3.5 MB/s (26196 bytes in 0.007s)
+INFO: Initial texture: 1080x1920
+INFO: scrcpy 1.12 <https://github.com/Genymobile/scrcpy>
+[100%] /data/local/tmp/scrcpy-server.jar
+/usr/local/share/scrcpy/scrcpy-server: 1 file pushed. 3.1 MB/s (26196 bytes in 0.008s)
+INFO: Initial texture: 1080x1920
+WARN: Device disconnected
+INFO: scrcpy 1.12 <https://github.com/Genymobile/scrcpy>
+[100%] /data/local/tmp/scrcpy-server.jar
+/usr/local/share/scrcpy/scrcpy-server: 1 file pushed. 2.8 MB/s (26196 bytes in 0.009s)
+INFO: Initial texture: 1080x1920
+WARN: Device disconnected
+INFO: scrcpy 1.12 <https://github.com/Genymobile/scrcpy>
+[100%] /data/local/tmp/scrcpy-server.jar
+/usr/local/share/scrcpy/scrcpy-server: 1 file pushed. 3.1 MB/s (26196 bytes in 0.008s)
+INFO: Initial texture: 1080x1920
+Waiting for new log entries...
+WARN: Device disconnected
+INFO: scrcpy 1.12 <https://github.com/Genymobile/scrcpy>
+[100%] /data/local/tmp/scrcpy-server.jar
+/usr/local/share/scrcpy/scrcpy-server: 1 file pushed. 1.1 MB/s (26196 bytes in 0.023s)
+INFO: Initial texture: 1080x1920
+WARN: Device disconnected
+ERROR: (gcloud.app.logs.tail) There was a problem refreshing your current auth tokens: Unable to find the server at www.googleapis.com
+Please run:
+
+  $ gcloud auth login
+
+to obtain new credentials, or if you have already logged in with a
+different account:
+
+  $ gcloud config set account ACCOUNT
+
+to select an already authenticated account to use.
+2020-03-12 02:16:01 default[20200311t201340]  "GET / HTTP/1.1" 200
+2020-03-12 02:16:02 default[20200311t201340]  "GET /demo HTTP/1.1" 200
+2020-03-12 02:16:02 default[20200311t201340]  "GET /favicon.ico HTTP/1.1" 404
+2020-03-12 02:18:06 default[20200311t201703]  "GET / HTTP/1.1" 204
+2020-03-12 02:18:07 default[20200311t201703]  "GET /demo HTTP/1.1" 404
+2020-03-12 02:20:18 default[20200311t201703]  "GET /demo HTTP/1.1" 404
+2020-03-12 02:25:23 default[20200311t201703]  "GET / HTTP/1.1" 204
+2020-03-12 02:25:23 default[20200311t201703]  "GET /demo HTTP/1.1" 404
+2020-03-12 02:26:58 default[20200311t202622]  "GET / HTTP/1.1" 200
+2020-03-12 04:52:59 default[20200311t202622]  "POST /autenticacion HTTP/1.1" 200
+2020-03-12 04:54:49 default[20200311t202622]  "POST /altausuario HTTP/1.1" 200
+2020-03-12 23:44:27 default[20200312t174340]  "GET / HTTP/1.1" 200
+2020-03-12 23:44:41 default[20200312t174340]  "GET / HTTP/1.1" 204
+2020-03-12 23:44:41 default[20200312t174340]  "GET /favicon.ico HTTP/1.1" 200
+2020-03-12 23:44:44 default[20200312t174340]  "GET /hello HTTP/1.1" 200
+2020-03-12 23:46:26 default[20200312t174340]  "POST /autenticacion HTTP/1.1" 200
+2020-03-12 23:46:43 default[20200312t174340]  "POST /altausuario HTTP/1.1" 200
+2020-03-12 23:46:55 default[20200312t174340]  "POST /altausuario HTTP/1.1" 200
+2020-03-12 23:49:25 default[20200312t174340]  "POST /altausuario HTTP/1.1" 200
+2020-03-12 23:49:31 default[20200312t174340]  "POST /autenticacion HTTP/1.1" 200
+2020-03-12 23:50:55 default[20200312t175019]  "GET / HTTP/1.1" 204
+2020-03-12 23:54:12 default[20200312t175019]  "POST /autenticacion HTTP/1.1" 200
+2020-03-12 23:54:20 default[20200312t175019]  "POST /autenticacion HTTP/1.1" 200
+2020-03-12 23:55:26 default[20200312t175019]  "POST /autenticacion HTTP/1.1" 200
+2020-03-12 23:56:46 default[20200312t175019]  "POST /autenticacion HTTP/1.1" 200
+2020-03-12 23:57:14 default[20200312t175019]  "POST /autenticacion HTTP/1.1" 200
+2020-03-12 23:57:57 default[20200312t175019]  "POST /altausuario HTTP/1.1" 200
+2020-03-13 00:08:49 default[20200312t180756]  "GET / HTTP/1.1" 200
+2020-03-13 00:16:20 default[20200312t180756]  "POST /altausuario HTTP/1.1" 200
+2020-03-13 00:16:33 default[20200312t180756]  "POST /autenticacion HTTP/1.1" 200
+2020-03-13 00:16:38 default[20200312t180756]  "POST /altausuario HTTP/1.1" 200
+2020-03-13 00:23:05 default[20200312t180756]  "POST /altausuario HTTP/1.1" 200
+2020-03-13 00:39:23 default[20200312t183836]  "GET / HTTP/1.1" 200
+2020-03-13 00:39:32 default[20200312t183836]  "POST /altausuario HTTP/1.1" 200
+2020-03-13 01:07:08 default[20200312t190557]  "GET / HTTP/1.1" 200
+2020-03-13 01:09:14 default[20200312t190557]  "POST /altausuario HTTP/1.1" 200
+2020-03-13 01:13:08 default[20200312t190557]  "GET / HTTP/1.1" 200
+2020-03-13 01:13:16 default[20200312t191227]  "POST /altausuario HTTP/1.1" 200
+2020-03-13 01:30:08 default[20200312t191227]  "POST /altausuario HTTP/1.1" 200
+INFO: scrcpy 1.12 <https://github.com/Genymobile/scrcpy>
+[100%] /data/local/tmp/scrcpy-server.jar
+/usr/local/share/scrcpy/scrcpy-server: 1 file pushed. 8.4 MB/s (26196 bytes in 0.003s)
+INFO: Initial texture: 1080x1920
+WARN: Device disconnected
+[server] ERROR: Exception on thread Thread[main,5,main]INFO: scrcpy 1.12 <https://github.com/Genymobile/scrcpy>
+[100%] /data/local/tmp/scrcpy-server.jar
+/usr/local/share/scrcpy/scrcpy-server: 1 file pushed. 1.2 MB/s (26196 bytes in 0.020s)
+INFO: Initial texture: 1080x1920
+WARN: Device disconnected

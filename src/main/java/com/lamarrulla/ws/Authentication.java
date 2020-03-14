@@ -1,4 +1,4 @@
-package lamarrulla;
+package com.lamarrulla.ws;
 
 import java.io.IOException;
 

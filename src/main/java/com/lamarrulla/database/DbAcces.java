@@ -5,8 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DbAcces {
+	
+	private static final Logger log = Logger.getLogger(DbAcces.class.getName());
+	
 	static String server = System.getenv("server");
 	static String puerto = System.getenv("puerto");
 	static String database = System.getenv("database");
@@ -105,6 +110,10 @@ public class DbAcces {
         } catch (java.sql.SQLException sqle) {
         	strError = sqle.getMessage();
             System.out.println("Error: " + sqle);
+            log.log(Level.WARNING, "Error al conectar: " + sqle);
+            log.log(Level.WARNING, "Error al conectar mensaje: " + sqle.getMessage());
+            log.log(Level.WARNING, "Error al conectar causa: " + sqle.getCause());
+            log.log(Level.WARNING, "Error al conectar mensaje localizado: " + sqle.getLocalizedMessage());
         }
     }
 	public void disconnectDatabase() {				
