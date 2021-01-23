@@ -12,12 +12,12 @@ public class DbAcces {
 	
 	private static final Logger log = Logger.getLogger(DbAcces.class.getName());
 	
-	static String server = System.getenv("server");
-	static String puerto = System.getenv("puerto");
-	static String database = System.getenv("database");
-	static String user = System.getenv("user");
-	static String passw = System.getenv("passw");
-	static int tipoDatabase = Integer.parseInt(System.getenv("tipoDatabase"));	// 1 Local // 2 SQLEngine
+	static String server = "127.0.0.1"; //System.getenv("server");
+	static String puerto = "5432"; //System.getenv("puerto");
+	static String database = "lamarrulladb"; //System.getenv("database");
+	static String user = "postgres"; //System.getenv("user");
+	static String passw = "maradr"; //System.getenv("passw");
+	static int tipoDatabase = 1; //Integer.parseInt(System.getenv("tipoDatabase"));	// 1 Local // 2 SQLEngine
 	private String instance = System.getenv("instance");
 	Connection connection = null;
 	PreparedStatement ps = null;

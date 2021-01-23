@@ -16,7 +16,7 @@
 		<env-var name="database" value="lamarrulladb"></env-var>
 		<env-var name="user" value="postgres"></env-var>
 		<env-var name="passw" value="maradr"></env-var>
-		<env-var name="tipoDatabase" value="2"></env-var>
+		<env-var name="tipoDatabase" value="1"></env-var>
 		<env-var name="instance" value="lamarrullaws-270900:us-central1:lamarrulla"></env-var>
 	</env-variables>
 
