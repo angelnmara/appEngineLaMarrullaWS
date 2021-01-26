@@ -21,4 +21,3 @@ WORKDIR /usr/lamarrulla/appEngineLaMarrullaWS
 RUN mvn clean
 
 RUN mvn install
-

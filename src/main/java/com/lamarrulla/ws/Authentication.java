@@ -6,12 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
+//import javax.xml.parsers.ParserConfigurationException;
+//import javax.xml.xpath.XPathExpressionException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xml.sax.SAXException;
+//import org.xml.sax.SAXException;
 
 import com.lamarrulla.database.DbAcces;
 import com.lamarrulla.utils.Utils;
@@ -90,26 +90,29 @@ public class Authentication extends HttpServlet {
 				System.out.println("no validado");
 			}
 
-			salida = utils.getStringFromXML("responseToken");					   
+			salida = "{\"token\":\"%s\", \"salt\":\"%s\", \"username/correo\":\"%s\"}";//utils.getStringFromXML("responseToken");					   
 		    response.getWriter().print(String.format(salida, token, jso.getString("fcsalt"), mostrar));
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response.getWriter().print("{\"error\":\"" + e.getMessage() + "\"}");
-		} catch (XPathExpressionException e) {
+		} 
+		/*catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response.getWriter().print("{\"error\":\"" + e.getMessage() + "\"}");
-		} catch (ParserConfigurationException e) {
+		}*/ 
+		/*catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response.getWriter().print("{\"error\":\"" + e.getMessage() + "\"}");
-		} catch (SAXException e) {
+		}*/ 
+		/*catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response.getWriter().print("{\"error\":\"" + e.getMessage() + "\"}");
-		}								
+		}*/								
 	}
 	
 	private void authenticate(String username, String correo, String password) throws JSONException {
