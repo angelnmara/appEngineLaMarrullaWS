@@ -1,8 +1,0 @@
-FROM postgres:9.4
-RUN run -d \
-    --name postgres \
-    -e POSTGRES_PASSWORD=maradr \
-    -e PGDATA=/var/lib/postgresql/data/pgdata \
-    -v /custom/mount:/var/lib/postgresql/data \
-    postgres
-ENV LANG de_DE.utf8
