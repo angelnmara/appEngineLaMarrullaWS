@@ -1,9 +1,23 @@
-FROM tomcat:8.0-alpine
+FROM ubuntu
 
-LABEL maintainer="angelnmara@hotmail.com"
+RUN chmod +x /usr
 
-EXPOSE 8080
+RUN mkdir /usr/lamarrulla
 
-CMD ls /
+WORKDIR /usr/lamarrulla
 
-CMD [“catalina.sh”, “run”]
+RUN pwd
+
+RUN apt-get update
+
+RUN apt-get install -y git
+
+RUN git clone https://github.com/angelnmara/appEngineLaMarrullaWS.git
+
+RUN apt-get install -y maven
+
+WORKDIR /usr/lamarrulla/appEngineLaMarrullaWS
+
+RUN mvn clean
+
+RUN mvn install
