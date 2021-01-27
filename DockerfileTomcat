@@ -2,11 +2,7 @@ FROM tomcat:8.0-alpine
 
 LABEL maintainer="angelnmara@hotmail.com"
 
-#COPY ubuntu: /usr	
-
-RUN ls /usr/local/tomcat/webapps
-
-#RUN cat /usr/local/tomcat/conf/tomcat-users.xml
+#RUN ls /usr/local/tomcat/webapps
 
 EXPOSE 8080
 
@@ -15,3 +11,7 @@ WORKDIR /usr/local/tomcat/bin
 RUN chmod +x catalina.sh
 
 RUN catalina.sh start
+
+RUN ls ubuntu:/
+
+WORKDIR /usr/local/tomcat/webapps

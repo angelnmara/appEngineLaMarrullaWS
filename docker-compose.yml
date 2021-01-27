@@ -1,17 +1,27 @@
-version: '3.7'
+version: '3.9'
+
+volumes:
+  ubuntu:
+    external: false
+  tomcat:
+    external: false
 
 services:
   ubuntu:
     build:
       context: .
-      dockerfile: Dockerfile    
+      dockerfile: Dockerfile      
+    volumes:
+      - ubuntu:/usr/lamarrulla/appEngineLaMarrullaWS/target    
   
   tomcat:
     build:
       context: .
       dockerfile: DockerfileTomcat
     ports: 
-      - "80:8080"  
+      - "80:8080"
+    volumes:
+      - tomcat:/usr/local/tomcat/webapps    
       
   postgres:
     image: 'postgres:latest'
@@ -22,3 +32,4 @@ services:
       - POSTGRES_PASSWORD=maradr
     ports:
       - '5432:5432'
+    
